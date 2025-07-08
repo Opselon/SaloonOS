@@ -103,4 +103,23 @@
   <data name="CancelButton" xml:space="preserve">
     <value>لغو</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="MyAppointmentsTitle" xml:space="preserve">
+    <value>نوبت های پیش روی شما:</value>
+  </data>
+  <data name="NoUpcomingAppointments" xml:space="preserve">
+    <value>شما هیچ نوبت رزرو شده ای ندارید.</value>
+  </data>
+  <data name="AppointmentCancelledSuccessfully" xml:space="preserve">
+    <value>نوبت شما با موفقیت لغو شد.</value>
+  </data>
+  <data name="CannotCancelAppointment" xml:space="preserve">
+    <value>این نوبت قابل لغو نیست (ممکن است مربوط به گذشته باشد یا قبلا انجام شده باشد).</value>
+  </data>
+  <data name="AppointmentNotFound" xml:space="preserve">
+    <value>نوبت مشخص شده یافت نشد یا به شما تعلق ندارد.</value>
+  </data>
+  <data name="CancelAppointmentButton" xml:space="preserve">
+    <value>لغو این نوبت</value>
+  </data>
 </root>

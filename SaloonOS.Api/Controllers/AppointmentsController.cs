@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SaloonOS.Application.DTOs;
+using SaloonOS.Application.Exceptions;
 using SaloonOS.Application.Features.Booking.Commands;
 using SaloonOS.Application.Features.Booking.Queries;
 
@@ -15,6 +16,38 @@ public class AppointmentsController : ControllerBase
     public AppointmentsController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+
+
+    [HttpGet("my-appointments/{customerId:guid}")]
+    [ProducesResponseType(typeof(IEnumerable<AppointmentDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetCustomerAppointments(Guid customerId)
+    {
+        var query = new GetCustomerAppointmentsQuery(customerId);
+        var appointments = await _mediator.Send(query);
+        return Ok(appointments);
+    }
+
+    [HttpDelete("{id:guid}/cancel/{customerId:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> CancelAppointment(Guid id, Guid customerId)
+    {
+        try
+        {
+            var command = new CancelAppointmentCommand(id, customerId);
+            await _mediator.Send(command);
+            return NoContent();
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (InvalidOperationException ex) when (ex.Message == "CannotCancelAppointment")
+        {
+            return BadRequest(new { Message = "This appointment cannot be cancelled." });
+        }
     }
 
     [HttpGet("slots")]

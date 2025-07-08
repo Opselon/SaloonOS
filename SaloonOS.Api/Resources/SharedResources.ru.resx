@@ -104,4 +104,23 @@
   <data name="CancelButton" xml:space="preserve">
     <value>Отмена</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="MyAppointmentsTitle" xml:space="preserve">
+    <value>Ваши предстоящие записи:</value>
+  </data>
+  <data name="NoUpcomingAppointments" xml:space="preserve">
+    <value>У вас нет запланированных записей.</value>
+  </data>
+  <data name="AppointmentCancelledSuccessfully" xml:space="preserve">
+    <value>Ваша запись была успешно отменена.</value>
+  </data>
+  <data name="CannotCancelAppointment" xml:space="preserve">
+    <value>Эту запись нельзя отменить (возможно, она уже прошла или была завершена).</value>
+  </data>
+  <data name="AppointmentNotFound" xml:space="preserve">
+    <value>Указанная запись не найдена или не принадлежит вам.</value>
+  </data>
+  <data name="CancelAppointmentButton" xml:space="preserve">
+    <value>Отменить эту запись</value>
+  </data>
 </root>

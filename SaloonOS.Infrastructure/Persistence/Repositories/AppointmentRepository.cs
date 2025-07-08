@@ -23,7 +23,18 @@ public class AppointmentRepository : Repository<Appointment>, IAppointmentReposi
             .OrderBy(a => a.StartTime)
             .ToListAsync();
     }
-
+    public async Task<List<Appointment>> GetUpcomingAppointmentsForCustomerAsync(Guid shopId, Guid customerId)
+    {
+        var now = DateTime.UtcNow;
+        return await _context.Appointments
+            .Where(a =>
+                a.ShopId == shopId &&
+                a.CustomerId == customerId &&
+                a.Status == AppointmentStatus.Scheduled &&
+                a.StartTime > now)
+            .OrderBy(a => a.StartTime)
+            .ToListAsync();
+    }
     public async Task<bool> IsSlotAvailable(Guid shopId, Guid staffId, DateTime proposedStartTime, int durationInMinutes)
     {
         var proposedUtcStart = proposedStartTime.ToUniversalTime();

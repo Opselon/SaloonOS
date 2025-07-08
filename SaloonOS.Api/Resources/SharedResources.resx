@@ -141,4 +141,23 @@
   <data name="CancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="MyAppointmentsTitle" xml:space="preserve">
+    <value>Your Upcoming Appointments:</value>
+  </data>
+  <data name="NoUpcomingAppointments" xml:space="preserve">
+    <value>You have no upcoming appointments scheduled.</value>
+  </data>
+  <data name="AppointmentCancelledSuccessfully" xml:space="preserve">
+    <value>Your appointment has been successfully cancelled.</value>
+  </data>
+  <data name="CannotCancelAppointment" xml:space="preserve">
+    <value>This appointment cannot be cancelled (it may be in the past or already completed).</value>
+  </data>
+  <data name="AppointmentNotFound" xml:space="preserve">
+    <value>The specified appointment could not be found or does not belong to you.</value>
+  </data>
+  <data name="CancelAppointmentButton" xml:space="preserve">
+    <value>Cancel This Appointment</value>
+  </data>
 </root>
