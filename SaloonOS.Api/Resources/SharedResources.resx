@@ -215,4 +215,14 @@
   <data name="PaymentRecordCreated" xml:space="preserve">
     <value>Payment has been successfully recorded.</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="CurrencySelectionPrompt" xml:space="preserve">
+    <value>Please select your primary currency:</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Main Menu</value>
+  </data>
+  <data name="BackToMainMenuButton" xml:space="preserve">
+    <value>⬅️ Back to Main Menu</value>
+  </data>
 </root>

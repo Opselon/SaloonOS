@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SaloonOS.Domain.Booking.Entities;
+using SaloonOS.Domain.TenantManagement.Entities;
 
 namespace SaloonOS.Infrastructure.Persistence.Configurations;
 

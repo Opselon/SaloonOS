@@ -178,4 +178,14 @@
   <data name="PaymentRecordCreated" xml:space="preserve">
     <value>Платеж успешно записан.</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="CurrencySelectionPrompt" xml:space="preserve">
+    <value>Пожалуйста, выберите основную валюту:</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Главное меню</value>
+  </data>
+  <data name="BackToMainMenuButton" xml:space="preserve">
+    <value>⬅️ Назад в главное меню</value>
+  </data>
 </root>
