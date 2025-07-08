@@ -170,4 +170,25 @@
   <data name="AppointmentDetails" xml:space="preserve">
     <value>{0} - {1} with {2} for {3}</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="AppointmentStatusUpdated" xml:space="preserve">
+    <value>Appointment status has been updated successfully.</value>
+  </data>
+  <data name="ConcurrencyConflict" xml:space="preserve">
+    <value>This appointment was modified by someone else since you loaded it. Please refresh and try again.</value>
+  </data>
+  <data name="CompleteAppointmentButton" xml:space="preserve">
+    <value>Mark as Completed</value>
+  </data>
+  <data name="AdminCancelButton" xml:space="preserve">
+    <value>Cancel (Admin)</value>
+  </data>
+    <!-- Add this new entry -->
+  <data name="AppointmentReminder" xml:space="preserve">
+    <value>🔔 Reminder: Your appointment for {0} with {1} is tomorrow at {2}. We look forward to seeing you!</value>
+  </data>
+    <!-- Add this new entry -->
+  <data name="CustomerProfileReady" xml:space="preserve">
+    <value>Welcome! Your profile is ready. How can I help you today?</value>
+  </data>
 </root>

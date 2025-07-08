@@ -4,6 +4,7 @@ using SaloonOS.Application.DTOs;
 using SaloonOS.Application.Exceptions;
 using SaloonOS.Application.Features.Booking.Commands;
 using SaloonOS.Application.Features.Booking.Queries;
+using System.Data;
 
 namespace SaloonOS.Api.Controllers;
 
@@ -80,6 +81,40 @@ public class AppointmentsController : ControllerBase
             });
         }
     }
+
+    [HttpPost("{id:guid}/admin/complete")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)] // For concurrency issues
+    public async Task<IActionResult> CompleteAppointment(Guid id, [FromBody] long adminTelegramUserId)
+    {
+        try
+        {
+            await _mediator.Send(new CompleteAppointmentCommand(id, adminTelegramUserId));
+            return NoContent();
+        }
+        catch (ConcurrencyException ex)
+        {
+            return Conflict(new { Message = ex.Message });
+        }
+    }
+
+    [HttpPost("{id:guid}/admin/cancel")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
+    public async Task<IActionResult> CancelAppointmentByAdmin(Guid id, [FromBody] long adminTelegramUserId)
+    {
+        try
+        {
+            await _mediator.Send(new CancelAppointmentByAdminCommand(id, adminTelegramUserId));
+            return NoContent();
+        }
+        catch (ConcurrencyException ex)
+        {
+            return Conflict(new { Message = ex.Message });
+        }
+    }
+
+
     [HttpGet("admin/schedule")]
     [ProducesResponseType(typeof(IEnumerable<AdminAppointmentDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]

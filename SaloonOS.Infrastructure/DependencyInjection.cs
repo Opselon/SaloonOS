@@ -10,6 +10,8 @@ using SaloonOS.Infrastructure.Persistence;
 using SaloonOS.Infrastructure.Persistence.DbContext;
 using SaloonOS.Infrastructure.Services;
 using StackExchange.Redis;
+using Hangfire;
+using Hangfire.PostgreSql;
 
 namespace SaloonOS.Infrastructure;
 
@@ -56,6 +58,19 @@ public static class DependencyInjection
 
         // --- UNIT OF WORK & REPOSITORIES ---
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IAppointmentReminderJob, SaloonOS.Application.Features.Notifications.AppointmentReminderJob>();
+        services.AddScoped<INotificationService, TelegramNotificationService>();
+
+        services.AddHangfire(config => config
+      .UseSimpleAssemblyNameTypeSerializer()
+      .UseRecommendedSerializerSettings()
+      .UsePostgreSqlStorage(c => c.UseNpgsqlConnection(configuration.GetConnectionString("SaloonOSDb"))));
+
+        services.AddHangfireServer();
+
+        // Register our custom background job so Hangfire's DI can resolve it.
+        services.AddScoped<IAppointmentReminderJob, SaloonOS.Application.Features.Notifications.AppointmentReminderJob>();
+
 
         return services;
     }

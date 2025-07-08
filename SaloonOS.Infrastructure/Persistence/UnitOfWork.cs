@@ -20,6 +20,7 @@ public class UnitOfWork : IUnitOfWork
     private IServiceRepository? _services;
     private IStaffMemberRepository? _staffMembers; // Corrected: private backing field inside class scope
     private IAppointmentRepository? _appointments;
+    private ICustomerRepository? _customers;
 
     public UnitOfWork(SaloonOSDbContext context)
     {
@@ -30,7 +31,7 @@ public class UnitOfWork : IUnitOfWork
     public IStaffMemberRepository StaffMembers => _staffMembers ??= new StaffMemberRepository(_context);
 
     public IAppointmentRepository Appointments => _appointments ??= new AppointmentRepository(_context);
-
+    public ICustomerRepository Customers => _customers ??= new CustomerRepository(_context);
     /// <inheritdoc />
     public async Task<int> CompleteAsync()
     {

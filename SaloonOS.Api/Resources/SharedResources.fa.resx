@@ -132,4 +132,25 @@
   <data name="AppointmentDetails" xml:space="preserve">
     <value>{0} - {1} با {2} برای {3}</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="AppointmentStatusUpdated" xml:space="preserve">
+    <value>وضعیت نوبت با موفقیت به روز رسانی شد.</value>
+  </data>
+  <data name="ConcurrencyConflict" xml:space="preserve">
+    <value>این نوبت از زمانی که شما آن را مشاهده کردید توسط شخص دیگری تغییر یافته است. لطفا صفحه را بازخوانی کرده و دوباره تلاش کنید.</value>
+  </data>
+  <data name="CompleteAppointmentButton" xml:space="preserve">
+    <value>علامت گذاری به عنوان انجام شده</value>
+  </data>
+  <data name="AdminCancelButton" xml:space="preserve">
+    <value>لغو (توسط مدیر)</value>
+  </data>
+    <!-- Add this new entry -->
+  <data name="AppointmentReminder" xml:space="preserve">
+    <value>🔔 یادآوری: نوبت شما برای {0} با {1} فردا ساعت {2} است. مشتاقانه منتظر دیدار شما هستیم!</value>
+  </data>
+    <!-- Add this new entry -->
+  <data name="CustomerProfileReady" xml:space="preserve">
+    <value>خوش آمدید! پروفایل شما آماده است. امروز چطور می توانم به شما کمک کنم؟</value>
+  </data>
 </root>

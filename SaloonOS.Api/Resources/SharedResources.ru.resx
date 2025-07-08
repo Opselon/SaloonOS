@@ -133,4 +133,25 @@
   <data name="AppointmentDetails" xml:space="preserve">
     <value>{0} - {1} с {2} для {3}</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="AppointmentStatusUpdated" xml:space="preserve">
+    <value>Статус записи успешно обновлен.</value>
+  </data>
+  <data name="ConcurrencyConflict" xml:space="preserve">
+    <value>Эта запись была изменена кем-то другим с тех пор, как вы ее загрузили. Пожалуйста, обновите и попробуйте снова.</value>
+  </data>
+  <data name="CompleteAppointmentButton" xml:space="preserve">
+    <value>Отметить как выполненную</value>
+  </data>
+  <data name="AdminCancelButton" xml:space="preserve">
+    <value>Отменить (админ)</value>
+  </data>
+    <!-- Add this new entry -->
+  <data name="AppointmentReminder" xml:space="preserve">
+    <value>🔔 Напоминание: Ваша запись на услугу "{0}" к мастеру {1} состоится завтра в {2}. С нетерпением ждем вас!</value>
+  </data>
+    <!-- Add this new entry -->
+  <data name="CustomerProfileReady" xml:space="preserve">
+    <value>Добро пожаловать! Ваш профиль готов. Чем я могу помочь вам сегодня?</value>
+  </data>
 </root>

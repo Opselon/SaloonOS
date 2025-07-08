@@ -21,6 +21,8 @@ public class Appointment : BaseEntity
     public string Currency { get; private set; } = string.Empty;
     public AppointmentStatus Status { get; private set; }
 
+    public uint RowVersion { get; private set; }
+
     private Appointment() { } // For EF Core
 
     /// <summary>

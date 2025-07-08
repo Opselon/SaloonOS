@@ -24,5 +24,6 @@ public class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
             .IsUnique(false); // Can't be unique as multiple staff can have same start time.
 
         builder.HasIndex(a => new { a.ShopId, a.StartTime, a.EndTime });
+        builder.Property(a => a.RowVersion).IsRowVersion();
     }
 }
