@@ -191,4 +191,28 @@
   <data name="CustomerProfileReady" xml:space="preserve">
     <value>Welcome! Your profile is ready. How can I help you today?</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="WorkScheduleUpdated" xml:space="preserve">
+    <value>Your weekly work schedule has been successfully updated.</value>
+  </data>
+  <data name="InvalidTimeRange" xml:space="preserve">
+    <value>The start time must be before the end time for {0}.</value>
+  </data>
+  <data name="ScheduleManagementPrompt" xml:space="preserve">
+    <value>Let's set your weekly schedule. For each day, provide the start and end time (e.g., 09:00-17:30) or type 'off' if you are closed.</value>
+  </data>
+  <data name="MondayPrompt" xml:space="preserve">
+    <value>Monday:</value>
+  </data>
+  <!-- ... Add similar prompts for Tuesday, Wednesday, etc. ... -->
+    <!-- Add these new entries -->
+  <data name="PaymentHistoryTitle" xml:space="preserve">
+    <value>Payment History</value>
+  </data>
+  <data name="TransactionDetails" xml:space="preserve">
+    <value>Transaction ID: {0}\nAmount: {1} {2}\nDate: {3}</value>
+  </data>
+  <data name="PaymentRecordCreated" xml:space="preserve">
+    <value>Payment has been successfully recorded.</value>
+  </data>
 </root>

@@ -1,3 +1,4 @@
+// Path: SaloonOS.Application/Features/Booking/Queries/GetAvailableTimeSlotsQueryHandler.cs
 using MediatR;
 using SaloonOS.Application.Common.Contracts;
 using SaloonOS.Application.DTOs;
@@ -9,31 +10,42 @@ namespace SaloonOS.Application.Features.Booking.Queries;
 public class GetAvailableTimeSlotsQueryHandler : IRequestHandler<GetAvailableTimeSlotsQuery, IEnumerable<TimeSlotDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ITenantContext _tenantContext;
 
-    public GetAvailableTimeSlotsQueryHandler(IUnitOfWork unitOfWork)
+    public GetAvailableTimeSlotsQueryHandler(IUnitOfWork unitOfWork, ITenantContext tenantContext)
     {
         _unitOfWork = unitOfWork;
+        _tenantContext = tenantContext;
     }
 
     public async Task<IEnumerable<TimeSlotDto>> Handle(GetAvailableTimeSlotsQuery request, CancellationToken cancellationToken)
     {
+        var shopId = _tenantContext.TenantId ?? throw new UnauthorizedAccessException();
         var service = await _unitOfWork.Services.GetByIdAsync(request.ServiceId)
             ?? throw new NotFoundException(nameof(Service), request.ServiceId);
 
-        // 1. Fetch Work Schedule
-        // In a real system, you would fetch the specific schedule for the day.
-        // We'll hardcode a 9 AM to 5 PM schedule for this implementation.
-        var workStart = request.Date.Date.AddHours(9);
-        var workEnd = request.Date.Date.AddHours(17);
+        // Fetch Work Schedule logic is now correct.
+        var schedule = (await _unitOfWork.WorkSchedules.GetSchedulesAsync(shopId, request.StaffId))
+                       .FirstOrDefault(ws => ws.DayOfWeek == request.Date.DayOfWeek);
+        if (schedule is null)
+        {
+            schedule = (await _unitOfWork.WorkSchedules.GetSchedulesAsync(shopId, null))
+                       .FirstOrDefault(ws => ws.DayOfWeek == request.Date.DayOfWeek);
+        }
+        if (schedule is null)
+        {
+            return Enumerable.Empty<TimeSlotDto>();
+        }
 
-        // 2. Fetch Existing Appointments
-        var existingAppointments = await _unitOfWork.Appointments.GetAppointmentsForDay(
-            service.ShopId, request.StaffId, request.Date);
+        var workStart = request.Date.Date.Add(schedule.StartTime);
+        var workEnd = request.Date.Date.Add(schedule.EndTime);
 
-        // 3. Generate Available Slots
+        // --- COMPLETING THE ALGORITHM ---
+        // The previous version was missing this entire block.
+        var existingAppointments = await _unitOfWork.Appointments.GetAppointmentsForDay(shopId, request.StaffId, request.Date);
         var availableSlots = new List<TimeSlotDto>();
         var potentialSlot = workStart;
-        const int slotIntervalMinutes = 15;
+        const int slotIntervalMinutes = 15; // The "step" for checking availability.
 
         while (potentialSlot.AddMinutes(service.DurationInMinutes) <= workEnd)
         {
@@ -49,6 +61,6 @@ public class GetAvailableTimeSlotsQueryHandler : IRequestHandler<GetAvailableTim
             potentialSlot = potentialSlot.AddMinutes(slotIntervalMinutes);
         }
 
-        return availableSlots;
+        return availableSlots; // This now returns a value on all code paths.
     }
 }

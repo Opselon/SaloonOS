@@ -10,4 +10,5 @@ public interface IUnitOfWork : IDisposable
     IRepository<T> GetRepository<T>() where T : class;
     IAppointmentRepository Appointments { get; }
     ICustomerRepository Customers { get; }
+    IWorkScheduleRepository WorkSchedules { get; }
 }

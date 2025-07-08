@@ -13,12 +13,13 @@ public class SaloonOSDbContext : Microsoft.EntityFrameworkCore.DbContext
     public SaloonOSDbContext(DbContextOptions<SaloonOSDbContext> options) : base(options) { }
 
     // Register our domain entities as DbSets
-    public System.Data.Entity.DbSet<Shop> Shops { get; set; }
-    public System.Data.Entity.DbSet<Service> Services { get; set; }
-    public System.Data.Entity.DbSet<ServiceTranslation> ServiceTranslations { get; set; }
-    public System.Data.Entity.DbSet<StaffMember> StaffMembers { get; set; }
-    public System.Data.Entity.DbSet<Appointment> Appointments { get; set; }
-    public System.Data.Entity.DbSet<Customer> Customers { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Shop> Shops { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Service> Services { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<ServiceTranslation> ServiceTranslations { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<StaffMember> StaffMembers { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Appointment> Appointments { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Customer> Customers { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<WorkSchedule> WorkSchedules { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

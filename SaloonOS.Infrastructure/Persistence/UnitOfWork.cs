@@ -21,7 +21,7 @@ public class UnitOfWork : IUnitOfWork
     private IStaffMemberRepository? _staffMembers; // Corrected: private backing field inside class scope
     private IAppointmentRepository? _appointments;
     private ICustomerRepository? _customers;
-
+    private IWorkScheduleRepository? _workSchedules;
     public UnitOfWork(SaloonOSDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
@@ -32,6 +32,7 @@ public class UnitOfWork : IUnitOfWork
 
     public IAppointmentRepository Appointments => _appointments ??= new AppointmentRepository(_context);
     public ICustomerRepository Customers => _customers ??= new CustomerRepository(_context);
+    public IWorkScheduleRepository WorkSchedules => _workSchedules ??= new WorkScheduleRepository(_context);
     /// <inheritdoc />
     public async Task<int> CompleteAsync()
     {

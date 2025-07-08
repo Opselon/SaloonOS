@@ -154,4 +154,28 @@
   <data name="CustomerProfileReady" xml:space="preserve">
     <value>Добро пожаловать! Ваш профиль готов. Чем я могу помочь вам сегодня?</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="WorkScheduleUpdated" xml:space="preserve">
+    <value>Ваше недельное рабочее расписание было успешно обновлено.</value>
+  </data>
+  <data name="InvalidTimeRange" xml:space="preserve">
+    <value>Время начала должно быть раньше времени окончания для дня {0}.</value>
+  </data>
+  <data name="ScheduleManagementPrompt" xml:space="preserve">
+    <value>Давайте установим ваше недельное расписание. Для каждого дня укажите время начала и окончания (например, 09:00-17:30) или введите 'выходной', если вы закрыты.</value>
+  </data>
+  <data name="MondayPrompt" xml:space="preserve">
+    <value>Понедельник:</value>
+  </data>
+  <!-- ... -->
+  <!-- Add these new entries -->
+  <data name="PaymentHistoryTitle" xml:space="preserve">
+    <value>История платежей</value>
+  </data>
+  <data name="TransactionDetails" xml:space="preserve">
+    <value>ID транзакции: {0}\nСумма: {1} {2}\nДата: {3}</value>
+  </data>
+  <data name="PaymentRecordCreated" xml:space="preserve">
+    <value>Платеж успешно записан.</value>
+  </data>
 </root>

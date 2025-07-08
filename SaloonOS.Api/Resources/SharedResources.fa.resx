@@ -153,4 +153,28 @@
   <data name="CustomerProfileReady" xml:space="preserve">
     <value>خوش آمدید! پروفایل شما آماده است. امروز چطور می توانم به شما کمک کنم؟</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="WorkScheduleUpdated" xml:space="preserve">
+    <value>برنامه کاری هفتگی شما با موفقیت به روز رسانی شد.</value>
+  </data>
+  <data name="InvalidTimeRange" xml:space="preserve">
+    <value>ساعت شروع باید قبل از ساعت پایان برای روز {0} باشد.</value>
+  </data>
+  <data name="ScheduleManagementPrompt" xml:space="preserve">
+    <value>بیایید برنامه هفتگی شما را تنظیم کنیم. برای هر روز، ساعت شروع و پایان را وارد کنید (مثلا 09:00-17:30) یا اگر تعطیل هستید، 'تعطیل' را تایپ کنید.</value>
+  </data>
+  <data name="MondayPrompt" xml:space="preserve">
+    <value>دوشنبه:</value>
+  </data>
+  <!-- ... -->
+    <!-- Add these new entries -->
+  <data name="PaymentHistoryTitle" xml:space="preserve">
+    <value>تاریخچه پرداخت ها</value>
+  </data>
+  <data name="TransactionDetails" xml:space="preserve">
+    <value>شناسه تراکنش: {0}\nمبلغ: {1} {2}\nتاریخ: {3}</value>
+  </data>
+  <data name="PaymentRecordCreated" xml:space="preserve">
+    <value>پرداخت با موفقیت ثبت شد.</value>
+  </data>
 </root>
