@@ -73,4 +73,35 @@
   <data name="PaymentFailed" xml:space="preserve">
     <value>Обработка платежа не удалась. Пожалуйста, проверьте свои данные и попробуйте снова.</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="AppointmentServiceSelectionPrompt" xml:space="preserve">
+    <value>Пожалуйста, выберите желаемую услугу:</value>
+  </data>
+  <data name="AppointmentStaffSelectionPrompt" xml:space="preserve">
+    <value>Пожалуйста, выберите предпочитаемого мастера (или выберите 'Любой свободный'):</value>
+  </data>
+  <data name="AppointmentDaySelectionPrompt" xml:space="preserve">
+    <value>Пожалуйста, выберите день для вашей записи:</value>
+  </data>
+  <data name="AppointmentTimeSlotSelectionPrompt" xml:space="preserve">
+    <value>Пожалуйста, выберите доступное время для {0} на {1}:</value>
+  </data>
+  <data name="AppointmentConfirmationPrompt" xml:space="preserve">
+    <value>Пожалуйста, подтвердите детали вашей записи:\n\nУслуга: {0}\nМастер: {1}\nДата: {2}\nВремя: {3}\nЦена: {4}\n\nВсе верно?</value>
+  </data>
+  <data name="AppointmentBookedSuccessfully" xml:space="preserve">
+    <value>✅ Ваша запись подтверждена! С нетерпением ждем вас.</value>
+  </data>
+  <data name="TimeSlotNotAvailable" xml:space="preserve">
+    <value>К сожалению, это время больше недоступно. Пожалуйста, выберите другое время.</value>
+  </data>
+  <data name="NoAvailableSlots" xml:space="preserve">
+    <value>К сожалению, на выбранный день нет свободных мест. Пожалуйста, попробуйте другой день.</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
 </root>

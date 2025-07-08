@@ -72,5 +72,35 @@
   <data name="PaymentFailed" xml:space="preserve">
     <value>پردازش پرداخت ناموفق بود. لطفا اطلاعات خود را بررسی کرده و دوباره تلاش کنید</value>
   </data>
-
+  <!-- Add these new entries -->
+  <data name="AppointmentServiceSelectionPrompt" xml:space="preserve">
+    <value>لطفا سرویس مورد نظر خود را انتخاب کنید:</value>
+  </data>
+  <data name="AppointmentStaffSelectionPrompt" xml:space="preserve">
+    <value>لطفا آرایشگر مورد نظر خود را انتخاب کنید (یا 'هرکدام آزاد بود' را انتخاب کنید):</value>
+  </data>
+  <data name="AppointmentDaySelectionPrompt" xml:space="preserve">
+    <value>لطفا یک روز برای نوبت خود انتخاب کنید:</value>
+  </data>
+  <data name="AppointmentTimeSlotSelectionPrompt" xml:space="preserve">
+    <value>لطفا یک زمان خالی برای {0} در تاریخ {1} انتخاب کنید:</value>
+  </data>
+  <data name="AppointmentConfirmationPrompt" xml:space="preserve">
+    <value>لطفا جزئیات نوبت خود را تایید کنید:\n\nسرویس: {0}\nپرسنل: {1}\nتاریخ: {2}\nساعت: {3}\nقیمت: {4}\n\nآیا صحیح است؟</value>
+  </data>
+  <data name="AppointmentBookedSuccessfully" xml:space="preserve">
+    <value>✅ نوبت شما تایید شد! مشتاقانه منتظر دیدار شما هستیم.</value>
+  </data>
+  <data name="TimeSlotNotAvailable" xml:space="preserve">
+    <value>متاسفانه، این بازه زمانی دیگر در دسترس نیست. لطفا زمان دیگری را انتخاب کنید.</value>
+  </data>
+  <data name="NoAvailableSlots" xml:space="preserve">
+    <value>متاسفانه، هیچ بازه زمانی خالی برای روز انتخاب شده وجود ندارد. لطفا روز دیگری را امتحان کنید.</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>تایید</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>لغو</value>
+  </data>
 </root>

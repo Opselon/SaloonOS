@@ -19,21 +19,17 @@ public class UnitOfWork : IUnitOfWork
     private IShopRepository? _shops;
     private IServiceRepository? _services;
     private IStaffMemberRepository? _staffMembers; // Corrected: private backing field inside class scope
+    private IAppointmentRepository? _appointments;
 
     public UnitOfWork(SaloonOSDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
-
-    /// <inheritdoc />
     public IShopRepository Shops => _shops ??= new ShopRepository(_context);
-
-    /// <inheritdoc />
     public IServiceRepository Services => _services ??= new ServiceRepository(_context);
-
-    /// <inheritdoc />
-    // This is the SINGLE, CORRECT, PUBLIC property definition.
     public IStaffMemberRepository StaffMembers => _staffMembers ??= new StaffMemberRepository(_context);
+
+    public IAppointmentRepository Appointments => _appointments ??= new AppointmentRepository(_context);
 
     /// <inheritdoc />
     public async Task<int> CompleteAsync()

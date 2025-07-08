@@ -17,7 +17,7 @@ public class SaloonOSDbContext : Microsoft.EntityFrameworkCore.DbContext
     public System.Data.Entity.DbSet<Service> Services { get; set; }
     public System.Data.Entity.DbSet<ServiceTranslation> ServiceTranslations { get; set; }
     public System.Data.Entity.DbSet<StaffMember> StaffMembers { get; set; }
-
+    public System.Data.Entity.DbSet<Appointment> Appointments { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // This line scans the assembly for all IEntityTypeConfiguration classes and applies them.

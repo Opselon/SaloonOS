@@ -110,4 +110,35 @@
   <data name="PaymentFailed" xml:space="preserve">
     <value>Payment processing failed. Please check your details and try again.</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="AppointmentServiceSelectionPrompt" xml:space="preserve">
+    <value>Please select your desired service:</value>
+  </data>
+  <data name="AppointmentStaffSelectionPrompt" xml:space="preserve">
+    <value>Please select your preferred staff member (or choose 'Any Available'):</value>
+  </data>
+  <data name="AppointmentDaySelectionPrompt" xml:space="preserve">
+    <value>Please select a day for your appointment:</value>
+  </data>
+  <data name="AppointmentTimeSlotSelectionPrompt" xml:space="preserve">
+    <value>Please select an available time for {0} on {1}:</value>
+  </data>
+  <data name="AppointmentConfirmationPrompt" xml:space="preserve">
+    <value>Please confirm your appointment details:\n\nService: {0}\nStaff: {1}\nDate: {2}\nTime: {3}\nPrice: {4}\n\nIs this correct?</value>
+  </data>
+  <data name="AppointmentBookedSuccessfully" xml:space="preserve">
+    <value>✅ Your appointment is confirmed! We look forward to seeing you.</value>
+  </data>
+  <data name="TimeSlotNotAvailable" xml:space="preserve">
+    <value>Sorry, that time slot is no longer available. Please select another time.</value>
+  </data>
+  <data name="NoAvailableSlots" xml:space="preserve">
+    <value>Sorry, there are no available time slots for the selected day. Please try another day.</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

@@ -8,5 +8,5 @@ public interface IUnitOfWork : IDisposable
     Task<int> CompleteAsync();
     IStaffMemberRepository StaffMembers { get; }
     IRepository<T> GetRepository<T>() where T : class;
-
+    IAppointmentRepository Appointments { get; }
 }
