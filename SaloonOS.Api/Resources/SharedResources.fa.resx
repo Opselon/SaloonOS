@@ -15,4 +15,16 @@
   <data name="WelcomeMessage" xml:space="preserve">
     <value>!به سالن او اس خوش آمدید! سیستم فعال است</value>
   </data>
+    <data name="ApiKeyMissing" xml:space="preserve">
+    <value>کلید API در هدر X-Api-Key ارائه نشده است</value>
+  </data>
+  <data name="ApiKeyInvalid" xml:space="preserve">
+    <value>کلید API ارائه شده نامعتبر است یا به یک سالن فعال تعلق ندارد</value>
+  </data>
+  <data name="ShopNotFound" xml:space="preserve">
+    <value>سالن درخواستی یافت نشد</value>
+  </data>
+  <data name="ForbiddenAccess" xml:space="preserve">
+    <value>شما مجاز به دسترسی به این منبع نیستید</value>
+  </data>
 </root>

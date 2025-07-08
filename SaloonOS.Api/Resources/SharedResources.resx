@@ -52,4 +52,17 @@
   <data name="WelcomeMessage" xml:space="preserve">
     <value>Welcome to SaloonOS! The system is operational.</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="ApiKeyMissing" xml:space="preserve">
+    <value>API Key was not provided in the X-Api-Key header.</value>
+  </data>
+  <data name="ApiKeyInvalid" xml:space="preserve">
+    <value>The provided API Key is invalid or does not correspond to an active tenant.</value>
+  </data>
+  <data name="ShopNotFound" xml:space="preserve">
+    <value>The requested shop could not be found.</value>
+  </data>
+  <data name="ForbiddenAccess" xml:space="preserve">
+    <value>You are not authorized to access this resource.</value>
+  </data>
 </root>

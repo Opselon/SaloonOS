@@ -15,4 +15,17 @@
   <data name="WelcomeMessage" xml:space="preserve">
     <value>Добро пожаловать в SaloonOS! Система работает.</value>
   </data>
+  <!-- Add these new entries -->
+  <data name="ApiKeyMissing" xml:space="preserve">
+    <value>Ключ API не был предоставлен в заголовке X-Api-Key.</value>
+  </data>
+  <data name="ApiKeyInvalid" xml:space="preserve">
+    <value>Предоставленный ключ API недействителен или не соответствует активному арендатору.</value>
+  </data>
+  <data name="ShopNotFound" xml:space="preserve">
+    <value>Запрошенный салон не найден.</value>
+  </data>
+  <data name="ForbiddenAccess" xml:space="preserve">
+    <value>У вас нет прав для доступа к этому ресурсу.</value>
+  </data>
 </root>
