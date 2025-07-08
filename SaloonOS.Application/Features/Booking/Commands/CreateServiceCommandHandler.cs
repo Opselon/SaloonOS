@@ -46,16 +46,22 @@ public class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand,
         await _publisher.Publish(new ServiceCreatedEvent(service), cancellationToken);
         // 5. Mapping & Response: Map the persisted entity to a DTO for the API response.
         // It's crucial to return the data from the object that was just saved, including its new ID.
-        var translation = service.Translations.First(); // We know there is at least one.
+        var translation = service.Translations.First();
+        var currency = SaloonOS.Domain.Shared.Currency.FromCode(service.Currency); // Get the Value Object
+
         return new ServiceDto
         {
             Id = service.Id,
             Name = translation.Name,
             Description = translation.Description,
             Price = service.Price,
-            Currency = service.Currency,
+            // --- CORRECTED ---
+            CurrencyCode = currency.Code,
+            CurrencySymbol = currency.Symbol,
+            // ---
             DurationInMinutes = service.DurationInMinutes
         };
+
     }
 
 }

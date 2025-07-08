@@ -8,6 +8,9 @@ namespace SaloonOS.Application.DTOs;
 public class BotConfigurationDto
 {
     public Guid ShopId { get; init; }
+    public string FirstName { get; set; }
+    public string PreferredLanguageCode { get; set; } 
+
     public string ShopName { get; init; } = string.Empty;
     public string BusinessCategory { get; init; } = string.Empty;
     public string DefaultLanguageCode { get; init; } = string.Empty;

@@ -5,14 +5,13 @@ namespace SaloonOS.Application.DTOs.ReadModels;
 /// This model is designed to be stored as a collection in Redis under a key
 /// specific to the shop, allowing for extremely fast retrieval of all services for a tenant.
 /// </summary>
+// Path: SaloonOS.Application/DTOs/ReadModels/ServiceReadModel.cs
 public class ServiceReadModel
 {
     public Guid Id { get; init; }
     public decimal Price { get; init; }
-    public string Currency { get; init; } = string.Empty;
+    public string CurrencyCode { get; init; } = string.Empty; // <-- ADD THIS
     public int DurationInMinutes { get; init; }
-
-    // We store all translations directly in the read model to avoid joins on the read path.
     public Dictionary<string, ServiceTranslationModel> Translations { get; init; } = new();
 }
 

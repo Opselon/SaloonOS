@@ -225,4 +225,70 @@
   <data name="BackToMainMenuButton" xml:space="preserve">
     <value>⬅️ Back to Main Menu</value>
   </data>
+  <!-- Add/Update these entries for the full bot flow -->
+  <data name="Welcome_NewUser" xml:space="preserve">
+    <value>Welcome to {0}! I'm your personal assistant for booking appointments. Let's get started. What would you like to do?</value>
+  </data>
+  <data name="Welcome_ReturningUser" xml:space="preserve">
+    <value>Welcome back to {0}, {1}! What can I help you with today?</value>
+  </data>
+  <data name="MainMenu_BookAppointment" xml:space="preserve">
+    <value>📅 Book Appointment</value>
+  </data>
+  <data name="MainMenu_MyAppointments" xml:space="preserve">
+    <value>🗓️ My Appointments</value>
+  </data>
+  <data name="MainMenu_ShopInfo" xml:space="preserve">
+    <value>ℹ️ Shop Info</value>
+  </data>
+  <data name="GenericError" xml:space="preserve">
+    <value>😕 Apologies, something went wrong. Please try again or type /start to return to the main menu.</value>
+  </data>
+  <data name="ConversationCancelled" xml:space="preserve">
+    <value>No problem. Your booking has been cancelled. Returning to the main menu.</value>
+  </data>
+  <data name="AnyAvailableStaff" xml:space="preserve">
+    <value>Any Available</value>
+  </data>
+  <!-- Add/Update these entries -->
+  <data name="AdminWelcome" xml:space="preserve">
+    <value>👑 Welcome to the Admin Panel, {0}! What would you like to manage?</value>
+  </data>
+  <data name="AdminMenu_ManageServices" xml:space="preserve">
+    <value>✂️ Manage Services</value>
+  </data>
+  <data name="AdminMenu_ManageStaff" xml:space="preserve">
+    <value>👥 Manage Staff</value>
+  </data>
+  <data name="AdminMenu_ManageSchedule" xml:space="preserve">
+    <value>⏰ Manage Schedule</value>
+  </data>
+  <data name="AdminMenu_ViewAppointments" xml:space="preserve">
+    <value>🗒️ View Today's Schedule</value>
+  </data>
+  <data name="SettingsMenu" xml:space="preserve">
+    <value>⚙️ Settings</value>
+  </data>
+  <data name="Settings_ChangeLanguage" xml:space="preserve">
+    <value>🌐 Change Language</value>
+  </data>
+  <data name="LanguageChangePrompt" xml:space="preserve">
+    <value>Please select your preferred language:</value>
+  </data>
+  <data name="LanguageChanged" xml:space="preserve">
+    <value>✅ Your language has been updated.</value>
+  </data>
+    <!-- Add/Update these entries -->
+  <data name="WelcomeMessage_New" xml:space="preserve">
+    <value>Welcome to {0}! I'm your personal assistant for managing your appointments. What would you like to do?</value>
+  </data>
+  <data name="WelcomeMessage_Return" xml:space="preserve">
+    <value>Welcome back, {0}! The main menu is below.</value>
+  </data>
+  <data name="MainMenu_Title" xml:space="preserve">
+    <value><b>--- Main Menu ---</b></value>
+  </data>
+  <data name="ApiConnectionError" xml:space="preserve">
+    <value>I'm having trouble connecting to our services right now. Please try again in a moment. If the problem persists, please contact support.</value>
+  </data>
 </root>

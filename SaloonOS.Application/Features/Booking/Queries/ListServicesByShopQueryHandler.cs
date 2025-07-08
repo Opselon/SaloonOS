@@ -1,7 +1,10 @@
+// Path: SaloonOS.Application/Features/Booking/Queries/ListServicesByShopQueryHandler.cs
 using MediatR;
 using SaloonOS.Application.Common.Contracts;
 using SaloonOS.Application.DTOs;
 using SaloonOS.Application.DTOs.ReadModels;
+using SaloonOS.Domain.Shared; // For the Currency Value Object
+using System.Linq;
 
 namespace SaloonOS.Application.Features.Booking.Queries;
 
@@ -30,9 +33,8 @@ public class ListServicesByShopQueryHandler : IRequestHandler<ListServicesByShop
             return MapToDto(cachedServices, request.LanguageCode);
         }
 
-        // 2. Cache Miss / Fallback Path: Data is not in Redis. We must build the read model from the main database.
-        // This operation is slower but necessary to populate the cache for subsequent requests.
-        var servicesFromDb = await _unitOfWork.Services.ListByShopIdAsync(tenantId, request.LanguageCode); // Assuming this method eagerly loads all translations
+        // 2. Cache Miss / Fallback Path: Data is not in Redis.
+        var servicesFromDb = await _unitOfWork.Services.ListByShopIdAsync(tenantId, request.LanguageCode);
 
         if (!servicesFromDb.Any())
         {
@@ -44,14 +46,17 @@ public class ListServicesByShopQueryHandler : IRequestHandler<ListServicesByShop
         {
             Id = s.Id,
             Price = s.Price,
-            Currency = s.Currency,
+            // --- CORRECTED ---
+            // The domain entity stores the currency code in a property named 'Currency'.
+            // We map this to the 'CurrencyCode' property in our read model.
+            CurrencyCode = s.Currency,
+            // ---
             DurationInMinutes = s.DurationInMinutes,
             Translations = s.Translations.ToDictionary(
                 t => t.LanguageCode,
                 t => new ServiceTranslationModel { Name = t.Name, Description = t.Description })
         }).ToList();
 
-        // Cache the result for future requests. Use a reasonable expiry.
         await _cacheService.SetAsync(cacheKey, servicesToCache, TimeSpan.FromHours(1));
 
         // 4. Map and return the result for this initial request.
@@ -62,22 +67,28 @@ public class ListServicesByShopQueryHandler : IRequestHandler<ListServicesByShop
     {
         return readModels.Select(rm =>
         {
-            // Attempt to get the requested language; fall back to the first available if not found.
-            var hasTranslation = rm.Translations.TryGetValue(languageCode, out var translation);
-            if (!hasTranslation)
+            // ... existing translation logic ...
+            if (!rm.Translations.TryGetValue(languageCode, out var translation))
             {
                 translation = rm.Translations.Values.FirstOrDefault();
             }
 
+            // Use our domain's Currency Value Object to get the symbol from the code.
+            var currency = Currency.FromCode(rm.CurrencyCode);
+
+            // --- CORRECTED ---
+            // Map to the final DTO using the correct property names: 'CurrencyCode' and 'CurrencySymbol'.
             return new ServiceDto
             {
                 Id = rm.Id,
                 Name = translation?.Name ?? "No Translation",
                 Description = translation?.Description,
                 Price = rm.Price,
-                Currency = rm.Currency,
+                CurrencyCode = currency.Code,
+                CurrencySymbol = currency.Symbol,
                 DurationInMinutes = rm.DurationInMinutes
             };
+            // ---
         });
     }
 }
