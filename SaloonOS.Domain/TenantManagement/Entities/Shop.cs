@@ -1,12 +1,13 @@
-﻿// ...
+﻿// Path: SaloonOS.Domain/TenantManagement/Entities/Shop.cs
 using SaloonOS.Domain.Common;
 using SaloonOS.Domain.TenantManagement.Entities;
 
 public class Shop : BaseEntity
 {
     public string Name { get; private set; }
-    public Guid BusinessCategoryId { get; private set; } // Foreign Key
-    public BusinessCategory BusinessCategory { get; private set; } // Navigation Property
+    public long? OwnerTelegramUserId { get; private set; } // <-- ADD THIS, make it nullable for other admin types
+    public Guid BusinessCategoryId { get; private set; }
+    public BusinessCategory BusinessCategory { get; private set; }
     public string HashedApiKey { get; private set; }
     public string DefaultLanguageCode { get; private set; }
     public DateTime CreatedAt { get; private set; }
@@ -38,7 +39,10 @@ public class Shop : BaseEntity
 
         return shop;
     }
-
+    public void SetOwner(long telegramUserId)
+    {
+        OwnerTelegramUserId = telegramUserId;
+    }
     // Static helper for hashing API keys - must be consistent across handlers.
     private static string HashApiKey(string apiKey)
     {

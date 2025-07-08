@@ -160,4 +160,14 @@
   <data name="CancelAppointmentButton" xml:space="preserve">
     <value>Cancel This Appointment</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="AdminDailyScheduleTitle" xml:space="preserve">
+    <value>Schedule for {0}:</value>
+  </data>
+  <data name="AdminNotAuthorized" xml:space="preserve">
+    <value>You are not authorized to perform this administrative action.</value>
+  </data>
+  <data name="AppointmentDetails" xml:space="preserve">
+    <value>{0} - {1} with {2} for {3}</value>
+  </data>
 </root>

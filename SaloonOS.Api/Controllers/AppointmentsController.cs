@@ -80,6 +80,23 @@ public class AppointmentsController : ControllerBase
             });
         }
     }
+    [HttpGet("admin/schedule")]
+    [ProducesResponseType(typeof(IEnumerable<AdminAppointmentDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> GetDailySchedule([FromQuery] DateTime date, [FromQuery] long adminTelegramUserId)
+    {
+        try
+        {
+            var query = new GetAppointmentsForDayQuery(date, adminTelegramUserId);
+            var schedule = await _mediator.Send(query);
+            return Ok(schedule);
+        }
+        catch (UnauthorizedAccessException ex) when (ex.Message == "AdminNotAuthorized")
+        {
+            return Forbid("You are not authorized to view this schedule.");
+        }
+    }
 
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(AppointmentDto), StatusCodes.Status200OK)]

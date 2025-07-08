@@ -123,4 +123,14 @@
   <data name="CancelAppointmentButton" xml:space="preserve">
     <value>Отменить эту запись</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="AdminDailyScheduleTitle" xml:space="preserve">
+    <value>Расписание на {0}:</value>
+  </data>
+  <data name="AdminNotAuthorized" xml:space="preserve">
+    <value>У вас нет прав для выполнения этого административного действия.</value>
+  </data>
+  <data name="AppointmentDetails" xml:space="preserve">
+    <value>{0} - {1} с {2} для {3}</value>
+  </data>
 </root>

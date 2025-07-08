@@ -122,4 +122,14 @@
   <data name="CancelAppointmentButton" xml:space="preserve">
     <value>لغو این نوبت</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="AdminDailyScheduleTitle" xml:space="preserve">
+    <value>برنامه کاری برای {0}:</value>
+  </data>
+  <data name="AdminNotAuthorized" xml:space="preserve">
+    <value>شما مجاز به انجام این عملیات مدیریتی نیستید.</value>
+  </data>
+  <data name="AppointmentDetails" xml:space="preserve">
+    <value>{0} - {1} با {2} برای {3}</value>
+  </data>
 </root>

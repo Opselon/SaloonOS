@@ -52,4 +52,18 @@ public class AppointmentRepository : Repository<Appointment>, IAppointmentReposi
 
         return !hasConflict;
     }
+    public async Task<List<Appointment>> GetScheduledAppointmentsForShopByDayAsync(Guid shopId, DateTime date)
+    {
+        var startOfDay = date.Date.ToUniversalTime();
+        var endOfDay = startOfDay.AddDays(1);
+
+        return await _context.Appointments
+            .Where(a =>
+                a.ShopId == shopId &&
+                a.Status == AppointmentStatus.Scheduled &&
+                a.StartTime >= startOfDay &&
+                a.StartTime < endOfDay)
+            .OrderBy(a => a.StartTime)
+            .ToListAsync();
+    }
 }
