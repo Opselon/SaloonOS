@@ -17,6 +17,7 @@ public class UnitOfWork : IUnitOfWork
 
     // Repositories are lazily instantiated to save resources.
     private IShopRepository? _shops;
+    private IServiceRepository? _services; // <-- ADD THE PRIVATE BACKING FIELD
 
     public UnitOfWork(SaloonOSDbContext context)
     {
@@ -25,15 +26,13 @@ public class UnitOfWork : IUnitOfWork
 
     /// <inheritdoc />
     public IShopRepository Shops => _shops ??= new ShopRepository(_context);
-    // When you add new repositories, expose them here:
-    // public IAppointmentRepository Appointments => _appointments ??= new AppointmentRepository(_context);
 
+    /// <inheritdoc />
+    public IServiceRepository Services => _services ??= new ServiceRepository(_context); // <-- IMPLEMENT THE PROPERTY CORRECTLY
 
     /// <inheritdoc />
     public async Task<int> CompleteAsync()
     {
-        // This single call to SaveChangesAsync commits all the changes tracked by the DbContext
-        // as a single transaction. This is the core of the Unit of Work pattern.
         return await _context.SaveChangesAsync();
     }
 
@@ -49,7 +48,6 @@ public class UnitOfWork : IUnitOfWork
         {
             if (disposing)
             {
-                // Dispose the DbContext, which closes the database connection.
                 _context.Dispose();
             }
         }

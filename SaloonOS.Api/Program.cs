@@ -1,46 +1,35 @@
 using System.Globalization;
-using FluentValidation;
-using MediatR;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.EntityFrameworkCore;
-using SaloonOS.Api.Extensions; // <-- ADD THIS
-using SaloonOS.Api.Resources;
-using SaloonOS.Application.Common.Behaviours;
-using SaloonOS.Application.Common.Contracts; // <-- ADD THIS
-using SaloonOS.Api.Services; // <-- ADD THIS
-using SaloonOS.Infrastructure.Persistence;
-using SaloonOS.Infrastructure.Persistence.DbContext;
+using SaloonOS.Api.Extensions;
+using SaloonOS.Application; // <-- For AddApplicationServices()
+using SaloonOS.Infrastructure; // <-- For AddInfrastructureServices()
 
 var builder = WebApplication.CreateBuilder(args);
 
 // --- 1. CONFIGURE SERVICES ---
-builder.Services.AddHttpContextAccessor(); // <-- ADD THIS. Crucial for TenantContext.
 
-// Add Localization
+// Register services from other layers using our new DI modules.
+// This is incredibly clean and maintainable.
+builder.Services
+    .AddApplicationServices()
+    .AddInfrastructureServices(builder.Configuration);
+
+// Register services specific to the API layer.
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-// --- APPLICATION SERVICES REGISTRATION ---
-var applicationAssembly = AppDomain.CurrentDomain.Load("SaloonOS.Application");
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-builder.Services.AddValidatorsFromAssembly(applicationAssembly);
-
-// --- INFRASTRUCTURE & CUSTOM SERVICES REGISTRATION ---
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<ITenantContext, TenantContext>(); // <-- ADD THIS
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = builder.Configuration.GetConnectionString("SaloonOSDb");
-builder.Services.AddDbContext<SaloonOSDbContext>(options =>
-    options.UseNpgsql(connectionString));
-
-
 var app = builder.Build();
 
 // --- 2. CONFIGURE THE HTTP REQUEST PIPELINE ---
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 var supportedCultures = new[] { new CultureInfo("en-US"), new CultureInfo("fa-IR"), new CultureInfo("ru-RU") };
 app.UseRequestLocalization(new RequestLocalizationOptions
 {
@@ -49,19 +38,12 @@ app.UseRequestLocalization(new RequestLocalizationOptions
     SupportedUICultures = supportedCultures
 });
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
-app.UseRouting(); // Ensure routing is configured.
+app.UseRouting();
 
-// Place our custom middleware in the correct order: AFTER routing, BEFORE authorization/endpoints.
-app.UseApiKeyAuthentication(); // <-- ADD THIS
-
+app.UseApiKeyAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

@@ -28,4 +28,20 @@
   <data name="ForbiddenAccess" xml:space="preserve">
     <value>У вас нет прав для доступа к этому ресурсу.</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="ServiceNameRequired" xml:space="preserve">
+    <value>Название услуги обязательно.</value>
+  </data>
+  <data name="ServicePriceInvalid" xml:space="preserve">
+    <value>Цена услуги должна быть больше нуля.</value>
+  </data>
+  <data name="ServiceDurationInvalid" xml:space="preserve">
+    <value>Продолжительность услуги в минутах должна быть больше нуля.</value>
+  </data>
+  <data name="ServiceCreatedSuccessfully" xml:space="preserve">
+    <value>Услуга успешно создана.</value>
+  </data>
+  <data name="ServiceNotFound" xml:space="preserve">
+    <value>Запрошенная услуга не найдена в вашем салоне.</value>
+  </data>
 </root>
