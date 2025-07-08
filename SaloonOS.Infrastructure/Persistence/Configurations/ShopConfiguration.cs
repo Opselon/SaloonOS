@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// ...
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SaloonOS.Domain.TenantManagement.Entities;
-
-namespace SaloonOS.Infrastructure.Persistence.Configurations;
+using Microsoft.EntityFrameworkCore;
 
 public class ShopConfiguration : IEntityTypeConfiguration<Shop>
 {
@@ -10,15 +8,17 @@ public class ShopConfiguration : IEntityTypeConfiguration<Shop>
     {
         builder.HasKey(s => s.Id);
 
-        builder.Property(s => s.Name)
-            .IsRequired()
-            .HasMaxLength(100);
+        builder.Property(s => s.Name).IsRequired().HasMaxLength(100);
+        builder.Property(s => s.HashedApiKey).IsRequired().HasMaxLength(256);
+        builder.Property(s => s.DefaultLanguageCode).IsRequired().HasMaxLength(10);
 
-        builder.Property(s => s.HashedApiKey)
-            .IsRequired()
-            .HasMaxLength(256);
+        // Configure the relationship with BusinessCategory
+        builder.HasOne(s => s.BusinessCategory) // Navigation Property
+               .WithMany() // Assuming BusinessCategory doesn't have a collection of Shops back
+               .HasForeignKey(s => s.BusinessCategoryId) // Foreign Key
+               .IsRequired();
 
-        // This creates an index on the API key for fast lookups.
         builder.HasIndex(s => s.HashedApiKey).IsUnique();
+        builder.HasIndex(s => s.BusinessCategoryId); // Index for filtering by category
     }
 }

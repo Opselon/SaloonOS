@@ -14,10 +14,11 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly SaloonOSDbContext _context;
     private bool _disposed = false;
-
+    private readonly Dictionary<Type, object> _repositories = new();
     // Repositories are lazily instantiated to save resources.
     private IShopRepository? _shops;
-    private IServiceRepository? _services; // <-- ADD THE PRIVATE BACKING FIELD
+    private IServiceRepository? _services;
+    private IStaffMemberRepository? _staffMembers; // Corrected: private backing field inside class scope
 
     public UnitOfWork(SaloonOSDbContext context)
     {
@@ -28,12 +29,25 @@ public class UnitOfWork : IUnitOfWork
     public IShopRepository Shops => _shops ??= new ShopRepository(_context);
 
     /// <inheritdoc />
-    public IServiceRepository Services => _services ??= new ServiceRepository(_context); // <-- IMPLEMENT THE PROPERTY CORRECTLY
+    public IServiceRepository Services => _services ??= new ServiceRepository(_context);
+
+    /// <inheritdoc />
+    // This is the SINGLE, CORRECT, PUBLIC property definition.
+    public IStaffMemberRepository StaffMembers => _staffMembers ??= new StaffMemberRepository(_context);
 
     /// <inheritdoc />
     public async Task<int> CompleteAsync()
     {
         return await _context.SaveChangesAsync();
+    }
+    public IRepository<T> GetRepository<T>() where T : class
+    {
+        var type = typeof(T);
+        if (!_repositories.ContainsKey(type))
+        {
+            _repositories[type] = new Repository<T>(_context);
+        }
+        return (IRepository<T>)_repositories[type];
     }
 
     public void Dispose()

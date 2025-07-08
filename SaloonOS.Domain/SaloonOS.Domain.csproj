@@ -11,4 +11,8 @@
     <Folder Include="Booking\ValueObjects\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="13.0.0" />
+  </ItemGroup>
+
 </Project>

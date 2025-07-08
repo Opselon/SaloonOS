@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SaloonOS.Application.Common.Contracts;
 using SaloonOS.Infrastructure.Persistence.DbContext;
+using System.Linq.Expressions;
 
 namespace SaloonOS.Infrastructure.Persistence.Repositories;
 
@@ -42,5 +43,9 @@ public class Repository<T> : IRepository<T> where T : class
     public virtual void Remove(T entity)
     {
         _dbSet.Remove(entity);
+    }
+    public virtual IQueryable<T> FindBy(Expression<Func<T, bool>> expression)
+    {
+        return _dbSet.Where(expression);
     }
 }

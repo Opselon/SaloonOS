@@ -16,6 +16,7 @@ public class SaloonOSDbContext : Microsoft.EntityFrameworkCore.DbContext
     public System.Data.Entity.DbSet<Shop> Shops { get; set; }
     public System.Data.Entity.DbSet<Service> Services { get; set; }
     public System.Data.Entity.DbSet<ServiceTranslation> ServiceTranslations { get; set; }
+    public System.Data.Entity.DbSet<StaffMember> StaffMembers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

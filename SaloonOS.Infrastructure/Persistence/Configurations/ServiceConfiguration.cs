@@ -22,7 +22,7 @@ public class ServiceConfiguration : IEntityTypeConfiguration<Service>
 
         // Configure the relationship to the Shop (Tenant)
         // A service must belong to a shop.
-        builder.HasOne<Domain.TenantManagement.Entities.Shop>()
+        builder.HasOne<Shop>()
             .WithMany()
             .HasForeignKey(s => s.ShopId)
             .IsRequired();

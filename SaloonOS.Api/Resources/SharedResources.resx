@@ -81,4 +81,33 @@
   <data name="ServiceNotFound" xml:space="preserve">
     <value>The requested service could not be found within your shop.</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="ServiceUpdatedSuccessfully" xml:space="preserve">
+    <value>The service has been updated successfully.</value>
+  </data>
+  <data name="ServiceDeletedSuccessfully" xml:space="preserve">
+    <value>The service has been successfully deleted.</value>
+  </data>
+  <data name="StaffMemberNameRequired" xml:space="preserve">
+    <value>Staff member name is required.</value>
+  </data>
+  <data name="StaffMemberCreated" xml:space="preserve">
+    <value>Staff member has been successfully added to your shop.</value>
+  </data>
+    <!-- Add these new entries -->
+  <data name="BusinessCategoryRequired" xml:space="preserve">
+    <value>Please select a business category for your shop.</value>
+  </data>
+  <data name="PaymentAmountInvalid" xml:space="preserve">
+    <value>Payment amount must be a positive value.</value>
+  </data>
+  <data name="PaymentTokenInvalid" xml:space="preserve">
+    <value>The provided payment token is invalid or has expired.</value>
+  </data>
+  <data name="PaymentSuccessful" xml:space="preserve">
+    <value>Payment was processed successfully.</value>
+  </data>
+  <data name="PaymentFailed" xml:space="preserve">
+    <value>Payment processing failed. Please check your details and try again.</value>
+  </data>
 </root>

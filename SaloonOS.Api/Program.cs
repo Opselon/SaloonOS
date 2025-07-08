@@ -14,6 +14,7 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration);
 
+
 // Register services specific to the API layer.
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");

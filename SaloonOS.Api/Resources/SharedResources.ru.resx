@@ -44,4 +44,33 @@
   <data name="ServiceNotFound" xml:space="preserve">
     <value>Запрошенная услуга не найдена в вашем салоне.</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="ServiceUpdatedSuccessfully" xml:space="preserve">
+    <value>Услуга успешно обновлена.</value>
+  </data>
+  <data name="ServiceDeletedSuccessfully" xml:space="preserve">
+    <value>Услуга успешно удалена.</value>
+  </data>
+  <data name="StaffMemberNameRequired" xml:space="preserve">
+    <value>Имя сотрудника обязательно.</value>
+  </data>
+  <data name="StaffMemberCreated" xml:space="preserve">
+    <value>Сотрудник успешно добавлен в ваш салон.</value>
+  </data>
+  <!-- Add these new entries -->
+  <data name="BusinessCategoryRequired" xml:space="preserve">
+    <value>Пожалуйста, выберите категорию бизнеса для вашего салона.</value>
+  </data>
+  <data name="PaymentAmountInvalid" xml:space="preserve">
+    <value>Сумма платежа должна быть положительным значением.</value>
+  </data>
+  <data name="PaymentTokenInvalid" xml:space="preserve">
+    <value>Предоставленный платежный токен недействителен или истек.</value>
+  </data>
+  <data name="PaymentSuccessful" xml:space="preserve">
+    <value>Платеж успешно обработан.</value>
+  </data>
+  <data name="PaymentFailed" xml:space="preserve">
+    <value>Обработка платежа не удалась. Пожалуйста, проверьте свои данные и попробуйте снова.</value>
+  </data>
 </root>

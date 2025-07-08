@@ -43,4 +43,34 @@
   <data name="ServiceNotFound" xml:space="preserve">
     <value>سرویس درخواستی در سالن شما یافت نشد</value>
   </data>
+    <!-- Add these new entries -->
+  <data name="ServiceUpdatedSuccessfully" xml:space="preserve">
+    <value>سرویس با موفقیت به روز رسانی شد</value>
+  </data>
+  <data name="ServiceDeletedSuccessfully" xml:space="preserve">
+    <value>سرویس با موفقیت حذف شد</value>
+  </data>
+  <data name="StaffMemberNameRequired" xml:space="preserve">
+    <value>نام پرسنل الزامی است</value>
+  </data>
+  <data name="StaffMemberCreated" xml:space="preserve">
+    <value>پرسنل با موفقیت به سالن شما اضافه شد</value>
+  </data>
+  <!-- Add these new entries -->
+  <data name="BusinessCategoryRequired" xml:space="preserve">
+    <value>لطفا یک دسته بندی تجاری برای سالن خود انتخاب کنید</value>
+  </data>
+  <data name="PaymentAmountInvalid" xml:space="preserve">
+    <value>مبلغ پرداخت باید یک مقدار مثبت باشد</value>
+  </data>
+  <data name="PaymentTokenInvalid" xml:space="preserve">
+    <value>توکن پرداخت ارائه شده نامعتبر است یا منقضی شده</value>
+  </data>
+  <data name="PaymentSuccessful" xml:space="preserve">
+    <value>پرداخت با موفقیت انجام شد</value>
+  </data>
+  <data name="PaymentFailed" xml:space="preserve">
+    <value>پردازش پرداخت ناموفق بود. لطفا اطلاعات خود را بررسی کرده و دوباره تلاش کنید</value>
+  </data>
+
 </root>

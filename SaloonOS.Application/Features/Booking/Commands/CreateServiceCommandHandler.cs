@@ -2,6 +2,7 @@ using MediatR;
 using SaloonOS.Application.Common.Contracts;
 using SaloonOS.Application.DTOs;
 using SaloonOS.Domain.Booking.Entities;
+using SaloonOS.Domain.Booking.Events;
 
 namespace SaloonOS.Application.Features.Booking.Commands;
 
@@ -9,11 +10,13 @@ public class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand,
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ITenantContext _tenantContext;
+    private readonly IPublisher _publisher; // <-- Inject IPublisher
 
-    public CreateServiceCommandHandler(IUnitOfWork unitOfWork, ITenantContext tenantContext)
+    public CreateServiceCommandHandler(IUnitOfWork unitOfWork, ITenantContext tenantContext, IPublisher publisher) // <-- Update constructor
     {
         _unitOfWork = unitOfWork;
         _tenantContext = tenantContext;
+        _publisher = publisher; // <-- Assign publisher
     }
 
     public async Task<ServiceDto> Handle(CreateServiceCommand request, CancellationToken cancellationToken)
@@ -36,11 +39,11 @@ public class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand,
 
         // 3. Persistence: Add the newly created aggregate to the repository.
         // EF Core's change tracker will automatically detect the related ServiceTranslation and add it as well.
-        await _unitOfWork.Services.AddAsync(service);
 
         // 4. Transaction: Commit all changes to the database as a single, atomic operation.
+        await _unitOfWork.Services.AddAsync(service);
         await _unitOfWork.CompleteAsync();
-
+        await _publisher.Publish(new ServiceCreatedEvent(service), cancellationToken);
         // 5. Mapping & Response: Map the persisted entity to a DTO for the API response.
         // It's crucial to return the data from the object that was just saved, including its new ID.
         var translation = service.Translations.First(); // We know there is at least one.
@@ -54,4 +57,5 @@ public class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand,
             DurationInMinutes = service.DurationInMinutes
         };
     }
+
 }

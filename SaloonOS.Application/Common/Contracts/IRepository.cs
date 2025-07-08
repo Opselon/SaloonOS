@@ -1,4 +1,6 @@
-﻿namespace SaloonOS.Application.Common.Contracts;
+﻿using System.Linq.Expressions;
+
+namespace SaloonOS.Application.Common.Contracts;
 
 public interface IRepository<T> where T : class
 {
@@ -6,4 +8,5 @@ public interface IRepository<T> where T : class
     Task<IEnumerable<T>> GetAllAsync();
     Task AddAsync(T entity);
     void Remove(T entity);
+    IQueryable<T> FindBy(Expression<Func<T, bool>> expression);
 }

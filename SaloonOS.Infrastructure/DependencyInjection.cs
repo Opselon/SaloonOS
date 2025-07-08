@@ -1,35 +1,61 @@
+// --- REQUIRED USING DIRECTIVES ---
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options; // <-- ADD THIS USING for manual binding
+using SaloonOS.Application.Common.Configuration;
 using SaloonOS.Application.Common.Contracts;
+using SaloonOS.Infrastructure.Caching;
 using SaloonOS.Infrastructure.Persistence;
 using SaloonOS.Infrastructure.Persistence.DbContext;
+using SaloonOS.Infrastructure.Services;
+using StackExchange.Redis;
 
 namespace SaloonOS.Infrastructure;
 
-/// <summary>
-/// DI registration module for the Infrastructure layer.
-/// It is responsible for registering services like the DbContext, repositories,
-/// the Unit of Work, and any clients for external services (e.g., email, payments).
-/// It can take the IConfiguration object to access connection strings and API keys.
-/// </summary>
 public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        // Configure the DbContext
+        // --- DATABASE CONFIGURATION (PostgreSQL - The "Write" Side) ---
         var connectionString = configuration.GetConnectionString("SaloonOSDb");
         if (string.IsNullOrEmpty(connectionString))
         {
-            throw new InvalidOperationException("Database connection string 'SaloonOSDb' not found.");
+            throw new InvalidOperationException("Fatal Error: Database connection string 'SaloonOSDb' not found in configuration.");
         }
         services.AddDbContext<SaloonOSDbContext>(options =>
             options.UseNpgsql(connectionString));
 
-        // Register the Unit of Work with a Scoped lifetime, appropriate for web requests.
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        // --- CACHING CONFIGURATION (Redis - The "Read" Side) ---
+        var redisConnectionString = configuration.GetConnectionString("Redis");
+        if (string.IsNullOrEmpty(redisConnectionString))
+        {
+            throw new InvalidOperationException("Fatal Error: Redis connection string 'Redis' not found in configuration.");
+        }
+        services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnectionString));
+        services.AddScoped<ICacheService, RedisCacheService>();
 
-        // Note: Specific repositories are managed by the UnitOfWork and don't need individual registration.
+        // --- PAYMENT SERVICE CONFIGURATION (Stripe) ---
+        // Register our abstracted payment service.
+        services.AddScoped<IPaymentService, StripePaymentService>();
+
+        // ============================ CORRECTED SECTION ============================
+        // We will now manually bind the configuration section and register it as a singleton IOptions<T>.
+        // This bypasses the problematic extension method and achieves the same result.
+
+        // 1. Create a new instance of our settings class.
+        var stripeSettings = new StripeSettings();
+
+        // 2. Explicitly get the "Stripe" section from configuration and bind its values to our instance.
+        configuration.GetSection("Stripe").Bind(stripeSettings);
+
+        // 3. Register the populated settings object as a singleton wrapped in IOptions<T>.
+        //    This makes it available for injection as IOptions<StripeSettings> everywhere else.
+        services.AddSingleton(Options.Create(stripeSettings));
+        // ===========================================================================
+
+        // --- UNIT OF WORK & REPOSITORIES ---
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }
